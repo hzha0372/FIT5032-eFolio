@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import isAuthenticated from '@/authenticate';
+import authenticateRole from '@/role'
+import router from '@/router';
+import { getAuth, signOut } from "firebase/auth"
 const logout = () => {
-  isAuthenticated.value = false
-  router.push('/login')
+  const auth = getAuth()
+  signOut(auth)
+    .then(() => {
+      isAuthenticated.value = false
+      authenticateRole.value = ''
+      console.log('Logout succeed')
+    })
+    .catch((error) => {
+      console.error('Logout error', error)
+
+      })
+  router.push('/FireLogin')
 }
 </script>
 
@@ -22,6 +35,12 @@ const logout = () => {
         </li>
         <li class="nav-item">
           <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/Firelogin" class="nav-link" active-class="active">Firebase Login</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link>
         </li>
         <li class="nav-item">
           <button v-if="isAuthenticated" class="nav-link" @click="logout">Logout</button>
