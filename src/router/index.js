@@ -85,6 +85,7 @@ router.beforeEach((to, from, next) => {
     to.name !== 'FireLogin' &&
     to.name !== 'FireRegister' &&
     to.name !== 'AddBook' &&
+    to.name !== 'BookList' &&
     !isAuthenticated.value
   ) {
     next({ name: 'AccessDenied' })
