@@ -9,6 +9,8 @@ import FirebaseRegisterView from '@/views/FirebaseRegisterView.vue'
 import AdminPage from '@/views/AdminPage.vue'
 import CustomerPage from '@/views/CustomerPage.vue'
 import authenticateRole from '@/role'
+import AddBookView from '@/views/AddBookView.vue'
+import BookList from '@/components/BookList.vue'
 const routes = [
   {
     path: '/',
@@ -50,6 +52,16 @@ const routes = [
     name: 'CustomerPage',
     component: CustomerPage
   },
+  {
+    path: '/addbook',
+    name: 'AddBook',
+    component: AddBookView
+  },
+  {
+    path: '/booklist',
+    name: 'BookList',
+    component: BookList
+  },
 ]
 const router = createRouter({
   history: createWebHistory(),
@@ -72,6 +84,7 @@ router.beforeEach((to, from, next) => {
     to.name !== 'Login' &&
     to.name !== 'FireLogin' &&
     to.name !== 'FireRegister' &&
+    to.name !== 'AddBook' &&
     !isAuthenticated.value
   ) {
     next({ name: 'AccessDenied' })
