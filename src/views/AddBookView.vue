@@ -24,7 +24,6 @@ export default {
     setup() {
         const isbn = ref('');
         const name = ref('');
-
         const addBook = async () => {
             try {
                 const isbnNumber = Number(isbn.value);
@@ -45,7 +44,6 @@ export default {
                 console.error('Error adding book: ', error);
             }
         };
-
         return {
             isbn,
             name,
