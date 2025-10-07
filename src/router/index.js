@@ -11,6 +11,8 @@ import CustomerPage from '@/views/CustomerPage.vue'
 import authenticateRole from '@/role'
 import AddBookView from '@/views/AddBookView.vue'
 import BookList from '@/components/BookList.vue'
+import GetBookCountView from '@/views/GetBookCountView.vue'
+import AddBookAPIView from '@/views/AddBookAPIView.vue'
 const routes = [
   {
     path: '/',
@@ -62,6 +64,17 @@ const routes = [
     name: 'BookList',
     component: BookList
   },
+  {
+    path: '/GetBookCount',
+    name: 'GetBookCount',
+    component: GetBookCountView
+  },
+  {
+    path: '/AddBookAPI',
+    name: 'AddBookAPI',
+    component: AddBookAPIView
+  }
+
 ]
 const router = createRouter({
   history: createWebHistory(),

@@ -51,6 +51,12 @@ const logout = () => {
         <li class="nav-item">
           <button v-if="isAuthenticated" class="nav-link" @click="logout">Logout</button>
         </li>
+        <li class="nav-item">
+          <router-link to="/GetBookCount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="AddBookAPI" class="nav-link" active-class="active">Add Book API</router-link>
+        </li>
       </ul>
     </header>
   </div>
