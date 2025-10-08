@@ -13,6 +13,9 @@ import AddBookView from '@/views/AddBookView.vue'
 import BookList from '@/components/BookList.vue'
 import GetBookCountView from '@/views/GetBookCountView.vue'
 import AddBookAPIView from '@/views/AddBookAPIView.vue'
+import WeatherView from '@/views/WeatherView.vue'
+import CountBookAPI from '@/views/CountBookAPI.vue'
+import GetAllBookAPI from '@/views/GetAllBookAPI.vue'
 const routes = [
   {
     path: '/',
@@ -73,8 +76,22 @@ const routes = [
     path: '/AddBookAPI',
     name: 'AddBookAPI',
     component: AddBookAPIView
-  }
-
+  },
+  {
+    path: '/WeatherCheck',
+    name: 'WeatherCheck',
+    component: WeatherView
+  },
+  {
+    path: '/CountBookAPI',
+    name: 'CountBookAPI',
+    component: CountBookAPI,
+  },
+  {
+    path: '/GetAllBookAPI',
+    name: 'GetAllBookAPI',
+    component: GetAllBookAPI,
+  },
 ]
 const router = createRouter({
   history: createWebHistory(),
