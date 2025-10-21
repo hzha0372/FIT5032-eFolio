@@ -50,8 +50,9 @@ export default {
         : null;
     },
     iconUrl() {
+      const protocol = window.location.protocol;
       return this.weatherData
-        ? `http://openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png`
+        ? `${protocol}//openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png`
         : null;
     },
   },
@@ -60,12 +61,13 @@ export default {
   },
   methods: {
     async fetchCurrentLocationWeather() {
+      const protocol = window.location.protocol;
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const { latitude, longitude } = position.coords;
             console.log("✅ Got location:", latitude, longitude);
-            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`;
+            const url = `${protocol}//api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`;
             await this.fetchWeatherData(url);
           },
           async (error) => {
@@ -74,10 +76,10 @@ export default {
               error
             );
             try {
-              const ipRes = await axios.get("https://ipapi.co/json");
+              const ipRes = await axios.get(`${protocol}//ipapi.co/json`);
               const { latitude, longitude } = ipRes.data;
               console.log("🌐 Using IP location:", latitude, longitude);
-              const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`;
+              const url = `${protocol}//api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}`;
               await this.fetchWeatherData(url);
             } catch (err) {
               console.error("Error fetching IP-based location weather:", err);
@@ -98,16 +100,17 @@ export default {
     },
 
     async searchByCity() {
+      const protocol = window.location.protocol;
       try {
         const response = await axios.get(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${this.city}&limit=1&appid=${apikey}`
+          `${protocol}//api.openweathermap.org/geo/1.0/direct?q=${this.city}&limit=1&appid=${apikey}`
         );
         console.log("search location response", response.data);
         this.latitude = response.data[0].lat;
         this.longitude = response.data[0].lon;
         console.log("search location response this.latitude", this.latitude);
         console.log("search location response this.longitude", this.longitude);
-        const url = `http://api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&appid=${apikey}`;
+        const url = `${protocol}//api.openweathermap.org/data/2.5/weather?lat=${this.latitude}&lon=${this.longitude}&appid=${apikey}`;
         console.log("search url", url);
         await this.fetchWeatherData(url);
       } catch (error) {
@@ -117,5 +120,6 @@ export default {
   },
 };
 </script>
+
 <style></style>
 
